@@ -53,6 +53,7 @@ test("desktop frame matches the Figma card, type and spacing", async ({ page }) 
 
 test("hover follows the Figma Card Hover state: a 16 px shadow and the title highlighted, anywhere on the card", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
+  await page.route("https://developer.mozilla.org/**", (route) => route.abort());
   await page.goto("/");
   // The title link's overlay covers the card, so hover the author row by position.
   await page.locator(".author").hover({ force: true });
@@ -63,6 +64,20 @@ test("hover follows the Figma Card Hover state: a 16 px shadow and the title hig
     page.locator(".illustration").click({ force: true }),
   ]);
   expect(request.url()).toContain("developer.mozilla.org");
+});
+
+test("the title link covers the whole card, and keyboard focus raises it like hover", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 960 });
+  await page.goto("/");
+  const card = await box(page, ".blog-card");
+  for (const [x, y] of [[card.x + 12, card.y + 12], [card.x + card.width - 12, card.y + card.height - 12], [card.x + card.width / 2, card.y + card.height - 40]]) {
+    const hit = await page.evaluate(([px, py]) => document.elementFromPoint(px, py)?.closest("a")?.textContent ?? null, [x, y]);
+    expect(hit, `${x},${y}`).toBe("HTML & CSS foundations");
+  }
+  await expect(page.locator(".blog-card")).toHaveCSS("box-shadow", "rgb(17, 17, 17) 8px 8px 0px 0px");
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "HTML & CSS foundations", exact: true })).toBeFocused();
+  await expect(page.locator(".blog-card")).toHaveCSS("box-shadow", "rgb(17, 17, 17) 16px 16px 0px 0px");
 });
 
 test("mobile frame follows the 375 px design", async ({ page }) => {
