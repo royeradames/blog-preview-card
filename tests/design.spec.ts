@@ -29,6 +29,7 @@ test("desktop frame matches the Figma card, type and spacing", async ({ page }) 
   await page.evaluate(() => document.fonts.ready);
   const card = await box(page, ".blog-card");
   expect(card.width).toBe(384);
+  // The design's 12 and 14 px text is raised to the 16 px floor, which adds about 6 px.
   expect(Math.abs(card.height - 522)).toBeLessThanOrEqual(8);
   expect(Math.abs(card.x + card.width / 2 - 720)).toBeLessThanOrEqual(1);
   expect(Math.abs(card.y + card.height / 2 - 480)).toBeLessThanOrEqual(6);
@@ -53,12 +54,13 @@ test("desktop frame matches the Figma card, type and spacing", async ({ page }) 
 test("hover follows the Figma Card Hover state: a 16 px shadow and the title highlighted, anywhere on the card", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.goto("/");
-  await page.locator(".author").hover();
+  // The title link's overlay covers the card, so hover the author row by position.
+  await page.locator(".author").hover({ force: true });
   await expect(page.locator(".blog-card")).toHaveCSS("box-shadow", "rgb(17, 17, 17) 16px 16px 0px 0px");
   await expect(page.getByRole("link", { name: "HTML & CSS foundations", exact: true })).toHaveCSS("color", "rgb(122, 90, 0)");
   const [request] = await Promise.all([
     page.waitForEvent("request", (request) => request.url().startsWith("https://developer.mozilla.org/")),
-    page.locator(".illustration").click(),
+    page.locator(".illustration").click({ force: true }),
   ]);
   expect(request.url()).toContain("developer.mozilla.org");
 });

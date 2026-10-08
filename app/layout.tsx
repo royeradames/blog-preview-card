@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/" },
   openGraph: { type: "website", url: "/", siteName, title, description },
-  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
 };
 
 const websiteJsonLd = { "@context": "https://schema.org", "@type": "WebSite", name: siteName, url: siteUrl };

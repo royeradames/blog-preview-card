@@ -4,8 +4,8 @@
 body { margin: 0; background: var(--canvas); color: var(--ink); font: 500 1rem/1.5 var(--font-figtree), sans-serif; }
 /* The card is centred in the first viewport, as in the 1440 x 960 and 375 x 812 frames; the attribution sits below it. */
 main { min-height: 100svh; display: grid; place-items: center; padding: 2.5rem 1.5rem; }
-/* Figma: 384 px card, 24 px padding and stack, 20 px radius, 8 px offset shadow growing to 16 px in the Card Hover state. */
-.blog-card { position: relative; width: min(100%, 24rem); padding: 1.5rem; background: white; border: 1px solid var(--ink); border-radius: 1.25rem; box-shadow: .5rem .5rem 0 var(--ink); }
+/* Figma: 384 px card, 24 px padding inside the 1 px border (so the image is 336 px, 279 px on mobile) and stack, 20 px radius, 8 px offset shadow growing to 16 px in the Card Hover state. */
+.blog-card { position: relative; width: min(100%, 24rem); padding: calc(1.5rem - 1px); background: white; border: 1px solid var(--ink); border-radius: 1.25rem; box-shadow: .5rem .5rem 0 var(--ink); }
 .blog-card:hover, .blog-card:focus-within { box-shadow: 1rem 1rem 0 var(--ink); }
 .illustration { display: block; width: 100%; height: 12.5rem; object-fit: cover; border-radius: .625rem; }
 .card-copy { margin-block: 1.5rem; }

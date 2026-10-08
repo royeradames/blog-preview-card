@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-/* The same mark as public/icon.svg, rendered as the 180 x 180 Home Screen icon. */
+/* The same mark as app/icon.svg, rendered as the 180 x 180 Home Screen icon. */
 export default function AppleIcon() {
   return new ImageResponse(
     (
