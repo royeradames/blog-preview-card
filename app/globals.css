@@ -12,7 +12,9 @@ main { min-height: 100svh; display: grid; place-items: center; padding: 2.5rem 1
 p, h1 { margin: 0; }
 .category { display: table; border-radius: .25rem; background: var(--canvas); padding: .25rem .75rem; font-weight: 800; }
 .published { margin-top: .75rem; }
-h1 { margin-block: .75rem; font-size: clamp(1.25rem, 5.4vw, 1.5rem); font-weight: 800; line-height: 1.5; }
+h1 { margin-block: .75rem; font-size: 1.5rem; font-weight: 800; line-height: 1.5; }
+/* Mobile frame (375 px): 20 px title. */
+@media (max-width: 29.99rem) { h1 { font-size: 1.25rem; } }
 h1 a { text-decoration: none; }
 /* The title link covers the whole card, so the card's hover state is also its click target. */
 h1 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
