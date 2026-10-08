@@ -56,11 +56,11 @@ test("hover follows the Figma Card Hover state: a 16 px shadow and the title hig
   await page.locator(".author").hover();
   await expect(page.locator(".blog-card")).toHaveCSS("box-shadow", "rgb(17, 17, 17) 16px 16px 0px 0px");
   await expect(page.getByRole("link", { name: "HTML & CSS foundations", exact: true })).toHaveCSS("color", "rgb(122, 90, 0)");
-  const [popup] = await Promise.all([
+  const [request] = await Promise.all([
     page.waitForEvent("request", (request) => request.url().startsWith("https://developer.mozilla.org/")),
     page.locator(".illustration").click(),
   ]);
-  expect(popup.url()).toContain("developer.mozilla.org");
+  expect(request.url()).toContain("developer.mozilla.org");
 });
 
 test("mobile frame follows the 375 px design", async ({ page }) => {

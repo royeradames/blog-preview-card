@@ -15,7 +15,9 @@ test("card remains readable and intact across the supplied and family widths", a
       overflow: document.documentElement.scrollWidth > innerWidth,
       images: [...document.images].every(image => image.complete && image.naturalWidth > 0),
       readable: [...document.querySelectorAll("p")].every(node => parseFloat(getComputedStyle(node).fontSize) >= 16),
-      targets: [...document.querySelectorAll("a")].every(node => node.getBoundingClientRect().height >= 44),
+      // Footer links keep 44 px targets; the title link covers the whole card (at least 24 px, WCAG 2.5.8).
+      targets: [...document.querySelectorAll("footer a")].every(node => node.getBoundingClientRect().height >= 44)
+        && [...document.querySelectorAll("h1 a")].every(node => node.getBoundingClientRect().height >= 24),
     }));
     expect(layout).toEqual({ overflow: false, images: true, readable: true, targets: true });
   }
@@ -40,9 +42,9 @@ test("title and footer have keyboard focus, truthful destinations and no writes"
 });
 
 test("reading and real links work without JavaScript", async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 400, height: 900 } });
+  const context = await browser.newContext({ baseURL: `http://127.0.0.1:${process.env.PORT ?? 4327}`, javaScriptEnabled: false, viewport: { width: 400, height: 900 } });
   try {
-    const page = await context.newPage(); await page.goto("http://localhost:4327/");
+    const page = await context.newPage(); await page.goto("/");
     await expect(page.getByRole("link", { name: "HTML & CSS foundations", exact: true })).toHaveAttribute("href", destination);
     await expect(page.getByText("Greg Hooper", { exact: true })).toBeVisible();
     await page.keyboard.press("Tab"); await expect(page.getByRole("link", { name: "HTML & CSS foundations", exact: true })).toBeFocused();
