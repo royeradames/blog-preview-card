@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="page-shell">
+    <div>
       <main>
-        <article className="blog-card" aria-labelledby="article-title" aria-describedby="sample-note">
+        <article className="blog-card" aria-labelledby="article-title">
           <Image className="illustration" src="/images/illustration-article.svg" alt="" width={336} height={200} preload unoptimized />
           <div className="card-copy">
             <p className="category">Learning</p>

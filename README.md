@@ -6,4 +6,8 @@ The title opens MDN's introductory HTML/CSS material. A visible disclosure ident
 
 ## Development
 
-Node 24 is used for verification. Run `npm ci`, then `npm run dev`. Validation uses `npm run typecheck`, `npm run lint` and `npm run build`. Local production build, types, lint, production audit and three browser contracts pass. Browser checks cover eight widths, native keyboard links and operation without JavaScript. The actual 1440px and 375px renders, loaded variable font and original icon were inspected. Hosted Lighthouse and release evidence remain pending; local checks are not a deployed result.
+Live: https://blog-preview-card.royeradames.com/
+
+Node 24. Run `npm ci`, then `npm run dev`. Validation uses `npm run lint`, `npm run typecheck`, `npm run build` and `npm test` (Playwright with installed Chrome; `PORT` overrides 4327). `tests/design.spec.ts` checks the Figma desktop, hover and mobile frames, the site identity, and every width from 320 to 1600 px in 10 px steps.
+
+Design choices: the design's 12 and 14 px text is raised to the 16 px family floor. The Card Hover state grows the shadow to 16 px anywhere on the card, because the title link covers the card. The hovered title uses dark gold (#7a5a00) rather than the design's yellow, which is 1.6:1 on white. `og:site_name` and WebSite JSON-LD name the site "Blog Preview Card".
