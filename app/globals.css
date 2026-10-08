@@ -1,5 +1,5 @@
 @import "tailwindcss";
-:root { color-scheme: light; --canvas: hsl(47 88% 63%); --ink: hsl(0 0% 7%); --muted: hsl(0 0% 42%); --active: #7a5a00; }
+:root { color-scheme: light; --canvas: #f4d04e; --ink: #111111; --muted: #6b6b6b; --active: #7a5a00; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--canvas); color: var(--ink); font: 500 1rem/1.5 var(--font-figtree), sans-serif; }
 /* The card is centred in the first viewport, as in the 1440 x 960 and 375 x 812 frames; the attribution sits below it. */
