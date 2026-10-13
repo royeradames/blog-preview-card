@@ -51,7 +51,7 @@ I learned to check the Figma interaction states as well as the static frames. Th
 
 I kept the card as an `article` with a native title link. The link's `::after` element covers the card, so the whole card opens the same destination. CSS handles hover and keyboard focus. Reading the card and following its links work without JavaScript.
 
-I raised the design's 12 and 14 px text to a 16 px minimum. I also used dark gold, `#7a5a00`, for the active title. The design's yellow has only 1.6:1 contrast on white. These choices change the design slightly to keep the text readable.
+I raised the design's 12 and 14 px text to a 16 px minimum. I also used dark gold, `#7a5a00`, for the active title. The design's yellow has only 1.5:1 contrast on white. These choices change the design slightly to keep the text readable.
 
 ### Continued development
 
