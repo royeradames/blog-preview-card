@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { siteName, siteUrl } from "./site";
 
-const figtree = localFont({ src: "../public/fonts/Figtree-VariableFont_wght.ttf", variable: "--font-figtree", weight: "300 900", display: "swap" });
+const figtree = localFont({ src: "../public/fonts/Figtree-VariableFont_wght.woff2", variable: "--font-figtree", weight: "300 900", display: "swap" });
 
 const title = "Blog Preview Card | Royer Adames";
 const description = "A responsive Frontend Mentor blog preview card with an accessible link to MDN's HTML and CSS learning material.";
