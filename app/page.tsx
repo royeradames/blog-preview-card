@@ -1,18 +1,18 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element -- next/image added client JavaScript here without optimizing anything (SVGs, data URLs or unoptimized files). */
 
 export default function Home() {
   return (
     <div>
       <main>
         <article className="blog-card" aria-labelledby="article-title">
-          <Image className="illustration" src="/images/illustration-article.svg" alt="" width={336} height={200} preload unoptimized />
+          <img className="illustration" src="/images/illustration-article.svg" alt="" width={336} height={200} fetchPriority="high" decoding="async" />
           <div className="card-copy">
             <p className="category">Learning</p>
             <p className="published">Published <time dateTime="2023-12-21">21 Dec 2023</time></p>
             <h1 id="article-title"><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website" aria-describedby="sample-note">HTML &amp; CSS foundations</a></h1>
             <p className="excerpt">These languages are the backbone of every website, defining structure, content, and presentation.</p>
           </div>
-          <p className="author"><Image src="/images/image-avatar.webp" alt="" width={32} height={32} unoptimized /><span>Greg Hooper</span></p>
+          <p className="author"><img src="/images/image-avatar.webp" alt="" width={32} height={32} loading="lazy" decoding="async" /><span>Greg Hooper</span></p>
         </article>
       </main>
       <footer>
